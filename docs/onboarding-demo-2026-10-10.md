@@ -32,4 +32,4 @@ JSON imports are bounded to 4 MB, 200 workflows and the existing 500-step-per-wo
 
 The technical page describes the trained 7B migration proposal model but does not invoke it. Neither this demo nor mocked OAuth protocol tests establish real provider consent, token refresh, live API equivalence, durable browser recovery or production cutover readiness. Google OAuth registration remains pending.
 
-The static demo and portfolio entry are staged in the local `github-site` checkout. Public deployment has not been performed in this pass.
+The walkthrough was initially verified locally. It was subsequently published at [the public demo](https://zulfkicar.github.io/apps/unzap/), with source at [zulfkicar/unzap](https://github.com/zulfkicar/unzap). GitHub repository checks and the portfolio Pages deployment succeeded. The hosted importer, mapping-review flow, shared demo-account assignment and generated-code replay were verified in the browser. The portfolio and profile README now link to it.
