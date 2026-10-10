@@ -1,0 +1,64 @@
+services:
+  download:
+    image: unzap-finetune:cpu-v1
+    build:
+      context: ..
+      dockerfile: finetune/Dockerfile
+    volumes: ["weights:/models"]
+    command: ["python", "download_model.py"]
+    environment:
+      HF_HUB_DISABLE_TELEMETRY: "1"
+  train:
+    image: unzap-finetune:cpu-v1
+    network_mode: none
+    volumes:
+      - weights:/models:ro
+      - ../.data/finetune/dataset:/dataset:ro
+      - ../.data/finetune/runs:/runs
+    environment:
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      OMP_NUM_THREADS: "6"
+      MKL_NUM_THREADS: "6"
+    mem_limit: 8g
+    cpus: 6
+    command:
+      [
+        "python",
+        "train.py",
+        "--steps",
+        "64",
+        "--max-seconds",
+        "1200",
+        "--threads",
+        "6",
+      ]
+  evaluate:
+    image: unzap-finetune:cpu-v1
+    network_mode: none
+    volumes:
+      - weights:/models:ro
+      - ../.data/finetune/dataset:/dataset:ro
+      - ../.data/finetune/runs:/runs
+    environment:
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      OMP_NUM_THREADS: "6"
+      MKL_NUM_THREADS: "6"
+    mem_limit: 8g
+    cpus: 6
+    command:
+      [
+        "python",
+        "evaluate.py",
+        "--limit",
+        "12",
+        "--threads",
+        "6",
+        "--max-seconds",
+        "1200",
+      ]
+volumes:
+  weights:

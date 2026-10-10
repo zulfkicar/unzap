@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-10",
+  "classification": "Local Q4_K_M plus F16 adapter inference. Complete sanitized source structures from the training corpus. This is integration verification, not independent generalization or live SaaS parity.",
+  "regressions": {
+    "total": 73,
+    "passed": 73
+  },
+  "corpus": {
+    "total": 4083,
+    "code_ready_after_mapping_review_before": 164,
+    "code_ready_after_mapping_review": 232,
+    "supported_nodes_before": 14530,
+    "supported_nodes": 16030,
+    "ready_without_mapping_review": 15
+  },
+  "fresh_model": {
+    "completed": 12,
+    "conversion_passed": 8,
+    "conversion_total": 8,
+    "branch_passed": 4,
+    "branch_total": 4,
+    "refusals_passed": 3,
+    "refusals_total": 4,
+    "new_adapters": [
+      {
+        "category": "sheets",
+        "passed": true,
+        "planning_turns": 1,
+        "fixture_cases": 1
+      },
+      {
+        "category": "slack_join",
+        "passed": true,
+        "planning_turns": 2,
+        "fixture_cases": 1
+      }
+    ],
+    "false_proposals_approved": 0
+  },
+  "mock_request_replay": {
+    "selected_complete_exports": 32,
+    "executed": 31,
+    "blocked": 1,
+    "passed": 31,
+    "sheets": 20,
+    "slack_join": 11
+  },
+  "saved_response_audit": {
+    "accepted": 74,
+    "supported": 80,
+    "unsupported_approved": 0,
+    "unsupported": 20,
+    "branch_accepted": 32,
+    "branch_total": 33,
+    "previously_accepted_invalid_broadcast_labels_rejected": 4
+  },
+  "local_examples": [
+    {
+      "category": "sheets",
+      "url": "http://127.0.0.1:8874/#workflow/492fd415-ba60-4006-b133-8ebe27d59ef7",
+      "version": 2,
+      "active_version": null,
+      "passed": true
+    },
+    {
+      "category": "slack_join",
+      "url": "http://127.0.0.1:8874/#workflow/c3fb3d84-46fe-4848-adb8-afa241ae32d1",
+      "version": 2,
+      "active_version": null,
+      "passed": true
+    }
+  ],
+  "existing_workflows_preserved": true,
+  "external_writes": false,
+  "additional_cloud_spend": 0
+}

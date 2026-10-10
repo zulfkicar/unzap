@@ -1,0 +1,24 @@
+{
+  "id": 200,
+  "title": "Equipment check → operations notification",
+  "nodes": {
+    "1": {
+      "id": 1,
+      "parent_id": null,
+      "selected_api": "WebHookCLIAPI@1.0.29",
+      "action": "hook_v2",
+      "params": {}
+    },
+    "2": {
+      "id": 2,
+      "parent_id": 1,
+      "selected_api": "SlackCLIAPI@1.39.3",
+      "action": "channel_message",
+      "params": {
+        "channel": "C_EXAMPLE",
+        "text": "Service request for {{1__asset}} · priority {{1__priority}}",
+        "unfurl": false
+      }
+    }
+  }
+}

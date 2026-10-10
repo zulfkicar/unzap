@@ -1,0 +1,251 @@
+{
+  "date": "2026-10-10",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "revision": "c03e6d358207e414f1eca0bb1891e29f1db0e242",
+  "steps": 600,
+  "trainable_parameters": 40370176,
+  "training_examples": 3446,
+  "validation_loss_before": 1.0479176514782012,
+  "validation_loss_after": 0.1525984014660935,
+  "adapter_sha256": "79e4c915891d43417bf08b81cb5a6841f34fa862f5d9d47a018188d64c74f907",
+  "evaluation": {
+    "status": "complete",
+    "paired_cases": 100,
+    "base": {
+      "tasks": 100,
+      "json_valid": 0,
+      "proposals": 80,
+      "compiler_valid": 0,
+      "behavior_passed": 0,
+      "refusals": 20,
+      "refusal_passed": 0,
+      "overall_passed": 0,
+      "fixtures": 300,
+      "fixture_passed": 0
+    },
+    "adapter": {
+      "tasks": 100,
+      "json_valid": 99,
+      "proposals": 80,
+      "compiler_valid": 78,
+      "behavior_passed": 78,
+      "refusals": 20,
+      "refusal_passed": 19,
+      "overall_passed": 97,
+      "fixtures": 300,
+      "fixture_passed": 294
+    },
+    "branches": {
+      "base": {
+        "tasks": 33,
+        "json_valid": 0,
+        "proposals": 33,
+        "compiler_valid": 0,
+        "behavior_passed": 0,
+        "refusals": 0,
+        "refusal_passed": 0,
+        "overall_passed": 0,
+        "fixtures": 225,
+        "fixture_passed": 0
+      },
+      "adapter": {
+        "tasks": 33,
+        "json_valid": 33,
+        "proposals": 33,
+        "compiler_valid": 32,
+        "behavior_passed": 32,
+        "refusals": 0,
+        "refusal_passed": 0,
+        "overall_passed": 32,
+        "fixtures": 225,
+        "fixture_passed": 220
+      }
+    },
+    "nonbranches": {
+      "base": {
+        "tasks": 67,
+        "json_valid": 0,
+        "proposals": 47,
+        "compiler_valid": 0,
+        "behavior_passed": 0,
+        "refusals": 20,
+        "refusal_passed": 0,
+        "overall_passed": 0,
+        "fixtures": 75,
+        "fixture_passed": 0
+      },
+      "adapter": {
+        "tasks": 67,
+        "json_valid": 66,
+        "proposals": 47,
+        "compiler_valid": 46,
+        "behavior_passed": 46,
+        "refusals": 20,
+        "refusal_passed": 19,
+        "overall_passed": 65,
+        "fixtures": 75,
+        "fixture_passed": 74
+      }
+    },
+    "wins": 97,
+    "regressions": 0,
+    "classification": "Sanitized real-export structures and explicitly marked supported segments, synthetic payload variants and authored integration responses. Held-out graph families. Exact source-control, action parameters and topology tests. Shared reference/formatter codecs. No live API or original Zap run equivalence claim.",
+    "fence_only_diagnostic": {
+      "classification": "Post-hoc diagnostic, applied identically to both models. Removes only a single enclosing Markdown JSON fence. No field, syntax, topology or workflow repair.",
+      "base": {
+        "tasks": 100,
+        "json_valid": 93,
+        "proposals": 80,
+        "compiler_valid": 2,
+        "behavior_passed": 0,
+        "refusals": 20,
+        "refusal_passed": 3,
+        "overall_passed": 3,
+        "fixtures": 300,
+        "fixture_passed": 0
+      },
+      "adapter": {
+        "tasks": 100,
+        "json_valid": 99,
+        "proposals": 80,
+        "compiler_valid": 78,
+        "behavior_passed": 78,
+        "refusals": 20,
+        "refusal_passed": 19,
+        "overall_passed": 97,
+        "fixtures": 300,
+        "fixture_passed": 294
+      },
+      "branches": {
+        "base": {
+          "tasks": 33,
+          "json_valid": 30,
+          "proposals": 33,
+          "compiler_valid": 0,
+          "behavior_passed": 0,
+          "refusals": 0,
+          "refusal_passed": 0,
+          "overall_passed": 0,
+          "fixtures": 225,
+          "fixture_passed": 0
+        },
+        "adapter": {
+          "tasks": 33,
+          "json_valid": 33,
+          "proposals": 33,
+          "compiler_valid": 32,
+          "behavior_passed": 32,
+          "refusals": 0,
+          "refusal_passed": 0,
+          "overall_passed": 32,
+          "fixtures": 225,
+          "fixture_passed": 220
+        }
+      },
+      "available_base": {
+        "tasks": 100,
+        "json_valid": 93,
+        "proposals": 80,
+        "compiler_valid": 2,
+        "behavior_passed": 0,
+        "refusals": 20,
+        "refusal_passed": 3,
+        "overall_passed": 3,
+        "fixtures": 300,
+        "fixture_passed": 0
+      }
+    },
+    "control_patterns": {
+      "classification": "Additional conservative control-pattern audit. Ignores field names, literal values and payload shapes and normalizes group identities. Familiar control patterns are not claimed as unseen composition.",
+      "unseen_branches": {
+        "base": {
+          "tasks": 18,
+          "json_valid": 0,
+          "proposals": 18,
+          "compiler_valid": 0,
+          "behavior_passed": 0,
+          "refusals": 0,
+          "refusal_passed": 0,
+          "overall_passed": 0,
+          "fixtures": 141,
+          "fixture_passed": 0
+        },
+        "adapter": {
+          "tasks": 18,
+          "json_valid": 18,
+          "proposals": 18,
+          "compiler_valid": 18,
+          "behavior_passed": 18,
+          "refusals": 0,
+          "refusal_passed": 0,
+          "overall_passed": 18,
+          "fixtures": 141,
+          "fixture_passed": 141
+        },
+        "fence_only_base": {
+          "tasks": 18,
+          "json_valid": 18,
+          "proposals": 18,
+          "compiler_valid": 0,
+          "behavior_passed": 0,
+          "refusals": 0,
+          "refusal_passed": 0,
+          "overall_passed": 0,
+          "fixtures": 141,
+          "fixture_passed": 0
+        },
+        "fence_only_adapter": {
+          "tasks": 18,
+          "json_valid": 18,
+          "proposals": 18,
+          "compiler_valid": 18,
+          "behavior_passed": 18,
+          "refusals": 0,
+          "refusal_passed": 0,
+          "overall_passed": 18,
+          "fixtures": 141,
+          "fixture_passed": 141
+        }
+      },
+      "familiar_branches": {
+        "base": {
+          "tasks": 15,
+          "json_valid": 0,
+          "proposals": 15,
+          "compiler_valid": 0,
+          "behavior_passed": 0,
+          "refusals": 0,
+          "refusal_passed": 0,
+          "overall_passed": 0,
+          "fixtures": 84,
+          "fixture_passed": 0
+        },
+        "adapter": {
+          "tasks": 15,
+          "json_valid": 15,
+          "proposals": 15,
+          "compiler_valid": 14,
+          "behavior_passed": 14,
+          "refusals": 0,
+          "refusal_passed": 0,
+          "overall_passed": 14,
+          "fixtures": 84,
+          "fixture_passed": 79
+        }
+      }
+    }
+  },
+  "budget": {
+    "authorized_usd": 15,
+    "starting_workspace_metered_usd": "1.78953889",
+    "final_workspace_metered_usd": "8.57086700",
+    "recorded_metered_increase_usd": "6.78132811",
+    "workspace_invoiced_usd": "0E-8",
+    "billing_note": "Workspace snapshot, not a final per-app invoice. Metering can lag. Resource ceilings also stayed below authorization.",
+    "checkpoint_sha256": "79e4c915891d43417bf08b81cb5a6841f34fa862f5d9d47a018188d64c74f907",
+    "local_artifacts_verified": 12,
+    "cloud_volume_deleted": true,
+    "deleted_volume": "unzap-qwen7b-20261010-v1"
+  },
+  "promotion": "Experimental translator. Not installed as the application agent. One unsupported-action false proposal and one token-capped conversion remain failures. All compiler and source-preservation gates remain required."
+}

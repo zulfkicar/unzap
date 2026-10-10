@@ -1,0 +1,50 @@
+{
+  "metadata": {
+    "fixture_origin": "Authored regression based on the inspected export's raw Slack action, dotted fields and gives references. All literals and identifiers are synthetic."
+  },
+  "zaps": [
+    {
+      "id": "fixture-thread-reply",
+      "title": "Case response → Slack thread",
+      "nodes": {
+        "100": {
+          "id": 100,
+          "parent_id": null,
+          "selected_api": "WebHookCLIAPI@1.1.1",
+          "action": "hook_v2",
+          "params": {}
+        },
+        "101": {
+          "id": 101,
+          "parent_id": 100,
+          "selected_api": "FilterAPI",
+          "action": "filter",
+          "params": {
+            "filter_criteria": [
+              {
+                "group": 0,
+                "action": "continue",
+                "key": "{{=gives[\"100\"][\"message.ticket_status\"]}}",
+                "match": "iexact",
+                "value": "open"
+              }
+            ]
+          }
+        },
+        "102": {
+          "id": 102,
+          "parent_id": 101,
+          "selected_api": "SlackCLIAPI@1.39.3",
+          "action": "_zap_raw_request",
+          "params": {
+            "fail_on_errors": true,
+            "method": "POST",
+            "url": "https://slack.com/api/chat.postMessage",
+            "headers": { "Content-Type": "application/json" },
+            "body": "{\"channel\":\"{{=gives[\\\"100\\\"][\\\"channel\\\"]}}\",\"text\":\"{{=gives[\\\"100\\\"][\\\"message.last\\\"]}}\",\"thread_ts\":\"{{=gives[\\\"100\\\"][\\\"message.create_source_id\\\"]}}\",\"unfurl_links\":false,\"unfurl_media\":false}"
+          }
+        }
+      }
+    }
+  ]
+}

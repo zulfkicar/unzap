@@ -1,0 +1,20 @@
+# Overlay on compose.yaml. Converted files must exist before starting.
+services:
+  app:
+    environment:
+      UNZAP_MODEL_PROVIDER: llamacpp
+      UNZAP_MODEL_PROFILE: trained-7b
+      LLAMA_URL: http://translator:11435
+      LLAMA_MODEL: unzap-7b
+    depends_on:
+      translator:
+        condition: service_started
+  translator:
+    image: ghcr.io/ggml-org/llama.cpp:server-b11541@sha256:bf3da52e92c083472b3d1c9f9da081f423ab9def95a87ec4bba51940382d75fd
+    volumes:
+      - ./.data/local-model:/models:ro
+    ports: ["127.0.0.1:11435:11435"]
+    command: ["-m", "/models/base-q4_k_m.gguf", "--lora", "/models/adapter-f16.gguf", "--alias", "unzap-7b", "--host", "0.0.0.0", "--port", "11435", "-c", "8192", "-t", "4", "-np", "1", "--no-webui"]
+    mem_limit: 9g
+    cpus: 4
+    restart: unless-stopped

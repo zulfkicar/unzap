@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-10",
+  "runtime": "WSL Docker",
+  "regressions": {
+    "passed": 92,
+    "total": 92,
+    "oauth_cases": 15
+  },
+  "providers": [
+    "google_sheets",
+    "airtable",
+    "slack"
+  ],
+  "workflows_preserved": true,
+  "credentials_preserved": true,
+  "existing_workflows": 9,
+  "registered_oauth_clients": 0,
+  "real_provider_consent_verified": false,
+  "classification": "OAuth protocol and lifecycle verified with mocked provider responses and synthetic credentials. Local setup UI inspected. Actual app registration, provider consent, and resource access await owner setup."
+}

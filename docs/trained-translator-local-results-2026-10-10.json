@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-10",
+  "classification": "Fresh local Q4_K_M base plus F16 adapter inference. Authored API fixtures and sanitized held-out export structures. No live SaaS writes.",
+  "model": "Qwen2.5-Coder-7B-Instruct with saved QLoRA adapter",
+  "local_runtime": "llama.cpp b11541, Q4_K_M base and F16 adapter, four CPU threads",
+  "regressions": {
+    "passed": 67,
+    "total": 67
+  },
+  "application": {
+    "fixture_cases": 2,
+    "fixtures_passed": true,
+    "proposal_turns": 2,
+    "saved_version": 2,
+    "active_version": null
+  },
+  "held_out_structures": [
+    {
+      "id": "test-0778d6413764-1",
+      "nodes": 4,
+      "path_groups": 1,
+      "fixture_cases": 1,
+      "compiler_valid": true,
+      "behavior_passed": true
+    },
+    {
+      "id": "test-556cfd49776d-2",
+      "nodes": 7,
+      "path_groups": 1,
+      "fixture_cases": 3,
+      "compiler_valid": true,
+      "behavior_passed": true
+    }
+  ],
+  "model_call_ms": [
+    161533.687,
+    127150.746,
+    76143.635,
+    112736.614
+  ],
+  "transport_interruptions": 1,
+  "interruption_handling": "Retained the interrupted attempt and resumed the identical held-out task after local Docker restarted.",
+  "existing_workflows_preserved": true,
+  "existing_workflows": 6,
+  "passed": true,
+  "limits": [
+    "Three fresh local model cases do not establish the full GGUF benchmark.",
+    "Held-out payloads are synthetic and outbound provider calls are mocked.",
+    "No live SaaS equivalence or nested real-export coverage established.",
+    "No additional Modal compute or cloud upload."
+  ]
+}

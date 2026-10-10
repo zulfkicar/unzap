@@ -1,0 +1,13 @@
+{
+  "channel": "C_SUPPORT",
+  "message.last": "The export limit has been corrected. براہ کرم دوبارہ کوشش کریں",
+  "message.create_source_id": "1791374400.000013",
+  "message.ticket_status": "open",
+  "agent.email": "engineer@example.test",
+  "assignment": {
+    "events[]message_time": ["2026-10-07T12:00:00Z", "2026-10-07T12:01:00Z"],
+    "events[]message_body": ["Original request", "Example response"]
+  },
+  "sla_details[]sla_times": { "calculated": [45, 90] },
+  "message.tags": ["export", "billing"]
+}

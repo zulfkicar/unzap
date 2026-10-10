@@ -1,0 +1,8 @@
+# Optional alternative to pulling the full server image. The preparation script
+# verifies the official CPU release archive before extracting these binaries.
+services:
+  translator:
+    image: unzap-translator:cpu-b11541
+    build:
+      context: ./.data/local-model/runtime
+      dockerfile: ../../../finetune/Dockerfile.inference

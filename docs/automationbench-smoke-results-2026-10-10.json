@@ -1,0 +1,105 @@
+{
+  "benchmark": "AutomationBench",
+  "upstream_commit": "4a8e1061254004d9dac807054eed33fad7d1ff14",
+  "benchmark_version": "1.0.6",
+  "date": "2026-10-10",
+  "model": "Qwen2.5-Coder-7B-Instruct Q4_K_M + Unzap F16 LoRA adapter",
+  "domain": "simple",
+  "toolset": "limited_zapier",
+  "selection": "First six public simple tasks in upstream order",
+  "max_turns": 8,
+  "max_output_tokens": 512,
+  "temperature": 0,
+  "seed": 42,
+  "concurrency": 1,
+  "duration_seconds": 224.74570560455322,
+  "official_score": false,
+  "summary": {
+    "avg_score": 0,
+    "pass_rate": 0,
+    "passed_count": 0,
+    "failed_count": 6,
+    "total_input_tokens": 1229,
+    "total_output_tokens": 544,
+    "total_cached_input_tokens": 8703,
+    "total_reasoning_tokens": 0,
+    "total_tool_calls": 0,
+    "total_model_time_s": 224.6,
+    "total_tool_time_s": 0,
+    "total_cost": 0,
+    "cost_formatted": "$0.0000",
+    "tasks_with_empty_responses": 0,
+    "tasks_with_errors": 0,
+    "tasks_with_zero_output": 0,
+    "tasks_refusal_stopped": 0,
+    "aborted_tasks": []
+  },
+  "tasks": [
+    {
+      "name": "simple.email_sf_contact_phone_update",
+      "passed": false,
+      "assertions_total": 1,
+      "assertions_passed": 0,
+      "model_calls": 1,
+      "recognized_tool_calls": 0,
+      "stop_reasons": [
+        "stop"
+      ]
+    },
+    {
+      "name": "simple.email_sf_contact_email_update",
+      "passed": false,
+      "assertions_total": 1,
+      "assertions_passed": 0,
+      "model_calls": 1,
+      "recognized_tool_calls": 0,
+      "stop_reasons": [
+        "stop"
+      ]
+    },
+    {
+      "name": "simple.email_sf_contact_title_update",
+      "passed": false,
+      "assertions_total": 1,
+      "assertions_passed": 0,
+      "model_calls": 1,
+      "recognized_tool_calls": 0,
+      "stop_reasons": [
+        "stop"
+      ]
+    },
+    {
+      "name": "simple.email_sf_contact_city_update",
+      "passed": false,
+      "assertions_total": 1,
+      "assertions_passed": 0,
+      "model_calls": 1,
+      "recognized_tool_calls": 0,
+      "stop_reasons": [
+        "stop"
+      ]
+    },
+    {
+      "name": "simple.email_sf_contact_account_update",
+      "passed": false,
+      "assertions_total": 1,
+      "assertions_passed": 0,
+      "model_calls": 1,
+      "recognized_tool_calls": 0,
+      "stop_reasons": [
+        "stop"
+      ]
+    },
+    {
+      "name": "simple.email_sf_lead_description_update",
+      "passed": false,
+      "assertions_total": 1,
+      "assertions_passed": 0,
+      "model_calls": 1,
+      "recognized_tool_calls": 0,
+      "stop_reasons": [
+        "stop"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+[
+  {
+    "name": "No existing record → create",
+    "input": { "email": " member@example.test ", "name": "Example Member" },
+    "expected_status": "succeeded",
+    "responses": { "3": { "records": [] } },
+    "expected_outputs": { "5": false, "7": true },
+    "expected_requests": [
+      {
+        "step_id": "3",
+        "method": "GET",
+        "url": "https://api.airtable.com/v0/app_example/Contacts?filterByFormula=%7BEmail%7D%3D%22member%40example.test%22&maxRecords=1&returnFieldsByFieldId=true",
+        "body": null
+      },
+      {
+        "step_id": "8",
+        "method": "POST",
+        "url": "https://api.airtable.com/v0/app_example/Contacts",
+        "body": "{\"records\":[{\"fields\":{\"Email\":\"member@example.test\",\"Name\":\"Example Member\"}}]}"
+      }
+    ]
+  },
+  {
+    "name": "Existing record → update",
+    "input": { "email": " member@example.test ", "name": "Example Member" },
+    "expected_status": "succeeded",
+    "responses": {
+      "3": {
+        "records": [{ "id": "rec_demo_found", "fields": { "Name": "Old" } }]
+      }
+    },
+    "expected_outputs": { "5": true, "7": false },
+    "expected_requests": [
+      {
+        "step_id": "3",
+        "method": "GET",
+        "url": "https://api.airtable.com/v0/app_example/Contacts?filterByFormula=%7BEmail%7D%3D%22member%40example.test%22&maxRecords=1&returnFieldsByFieldId=true",
+        "body": null
+      },
+      {
+        "step_id": "6",
+        "method": "PATCH",
+        "url": "https://api.airtable.com/v0/app_example/Contacts/rec_demo_found",
+        "body": "{\"fields\":{\"Name\":\"Example Member\"}}"
+      }
+    ]
+  }
+]

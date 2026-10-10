@@ -1,0 +1,60 @@
+{
+  "metadata": {
+    "fixture": "original synthetic export in the inspected Zap node format"
+  },
+  "zaps": [
+    {
+      "id": 100,
+      "title": "Synthetic request relay",
+      "status": "on",
+      "nodes": {
+        "1": {
+          "id": 1,
+          "parent_id": null,
+          "type_of": "read",
+          "selected_api": "WebHookCLIAPI@1.0.29",
+          "action": "hook_v2",
+          "params": {}
+        },
+        "2": {
+          "id": 2,
+          "parent_id": 1,
+          "type_of": "filter",
+          "selected_api": "FilterAPI",
+          "action": "filter",
+          "params": {
+            "filter_criteria": [
+              {
+                "group": 0,
+                "key": "{{1__status}}",
+                "match": "iexact",
+                "value": "ready",
+                "action": "continue"
+              }
+            ]
+          }
+        },
+        "3": {
+          "id": 3,
+          "parent_id": 2,
+          "type_of": "write",
+          "selected_api": "WebHookCLIAPI@1.0.29",
+          "action": "post",
+          "params": {
+            "url": "https://api.example.test/tasks",
+            "payload_type": "json",
+            "unflatten": "no",
+            "wrap_in_array": "no",
+            "headers": { "Authorization": "Bearer SYNTHETIC-EXAMPLE-TOKEN" },
+            "data": {
+              "event_id": "{{1__event_id}}",
+              "amount": "{{1__amount}}",
+              "active": "{{1__active}}",
+              "description": "Request {{1__event_id}}"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "metadata": {
+    "description": "Original synthetic examples. No company data."
+  },
+  "zaps": [
+    {
+      "id": 100,
+      "title": "Approved expense → record & notify",
+      "nodes": {
+        "1": {
+          "id": 1,
+          "parent_id": null,
+          "selected_api": "WebHookCLIAPI@1.0.29",
+          "action": "hook_v2",
+          "params": {}
+        },
+        "2": {
+          "id": 2,
+          "parent_id": 1,
+          "selected_api": "FilterAPI",
+          "action": "filter",
+          "params": {
+            "filter_criteria": [
+              {
+                "group": 0,
+                "key": "{{1__status}}",
+                "value": "approved",
+                "match": "iexact",
+                "action": "continue"
+              }
+            ]
+          }
+        },
+        "3": {
+          "id": 3,
+          "parent_id": 2,
+          "selected_api": "AirtableCLIAPI@3.15.0",
+          "action": "createRecord",
+          "params": {
+            "applicationId": "app_example",
+            "tableName": "Expenses",
+            "fields": { "amount": "{{1__amount}}" }
+          }
+        },
+        "4": {
+          "id": 4,
+          "parent_id": 3,
+          "selected_api": "SlackCLIAPI@1.39.3",
+          "action": "channel_message",
+          "params": {
+            "channel": "C_EXAMPLE",
+            "text": "Expense {{1__reference}} approved"
+          }
+        }
+      }
+    },
+    {
+      "id": 101,
+      "title": "Ready event → billing webhook",
+      "nodes": {
+        "10": {
+          "id": 10,
+          "parent_id": null,
+          "selected_api": "WebHookCLIAPI@1.0.29",
+          "action": "hook_v2",
+          "params": {}
+        },
+        "11": {
+          "id": 11,
+          "parent_id": 10,
+          "selected_api": "FilterAPI",
+          "action": "filter",
+          "params": {
+            "filter_criteria": [
+              {
+                "group": 0,
+                "key": "{{10__status}}",
+                "value": "ready",
+                "match": "iexact",
+                "action": "continue"
+              }
+            ]
+          }
+        },
+        "12": {
+          "id": 12,
+          "parent_id": 11,
+          "selected_api": "WebHookAPI",
+          "action": "post",
+          "params": {
+            "url": "https://api.example.test/events",
+            "payload_type": "json",
+            "headers": { "Authorization": "Bearer SYNTHETIC-TOKEN" },
+            "data": {
+              "reference": "{{10__reference}}",
+              "amount": "{{10__amount}}"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 102,
+      "title": "Weekly timesheet digest",
+      "nodes": {
+        "20": {
+          "id": 20,
+          "parent_id": null,
+          "selected_api": "ScheduleCLIAPI@1.6.0",
+          "action": "every_week",
+          "params": { "day": "friday" }
+        },
+        "21": {
+          "id": 21,
+          "parent_id": 20,
+          "selected_api": "GoogleSheetsV2CLIAPI@2.14.1",
+          "action": "lookup_row",
+          "params": {
+            "spreadsheet": "example-sheet",
+            "worksheet": "Timesheets",
+            "lookup_value": "this-week"
+          }
+        }
+      }
+    }
+  ]
+}

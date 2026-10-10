@@ -1,0 +1,99 @@
+{
+  "title": "Normalize, find, then update or create",
+  "provenance": "Authored values using the supplied export's native BranchingAPI, formatter and Airtable parameter contracts. No customer recording or private workflow copied.",
+  "nodes": {
+    "1": {
+      "id": 1,
+      "parent_id": null,
+      "selected_api": "WebHookCLIAPI@1.0.29",
+      "action": "hook_v2",
+      "params": { "key": "" }
+    },
+    "2": {
+      "id": 2,
+      "parent_id": 1,
+      "selected_api": "ZapierFormatterCLIAPI@1.0.8",
+      "action": "text_line_item",
+      "params": { "transform": "string.trim_space", "inputs": "{{1__email}}" }
+    },
+    "3": {
+      "id": 3,
+      "parent_id": 2,
+      "selected_api": "AirtableCLIAPI@3.15.0",
+      "action": "findRecord",
+      "params": {
+        "applicationId": "app_example",
+        "tableName": "Contacts",
+        "isExactMatch": "true",
+        "searchByField": "Email",
+        "searchByValue": "{{2__output}}",
+        "_zap_search_success_on_miss": "true",
+        "_zap_search_multiple_results": "first"
+      }
+    },
+    "4": {
+      "id": 4,
+      "parent_id": 3,
+      "selected_api": "BranchingAPI",
+      "action": "branch",
+      "params": {}
+    },
+    "5": {
+      "id": 5,
+      "parent_id": 4,
+      "selected_api": "BranchingAPI",
+      "action": "filter",
+      "params": {
+        "emoji": "A",
+        "color": "green",
+        "path_eval_index": 0,
+        "filter_criteria": [
+          {
+            "group": 0,
+            "key": "{{3___zap_search_was_found_status}}",
+            "match": "boolean",
+            "value": "true",
+            "action": "continue"
+          }
+        ]
+      }
+    },
+    "6": {
+      "id": 6,
+      "parent_id": 5,
+      "selected_api": "AirtableCLIAPI@3.15.0",
+      "action": "updateRecord",
+      "params": {
+        "applicationId": "app_example",
+        "tableName": "Contacts",
+        "rowId": "{{3__id}}",
+        "fields__Name": "{{1__name}}"
+      }
+    },
+    "7": {
+      "id": 7,
+      "parent_id": 4,
+      "selected_api": "BranchingAPI",
+      "action": "filter",
+      "params": {
+        "emoji": "B",
+        "color": "blue",
+        "path_eval_index": 1,
+        "path_eval_stage": 1,
+        "isAlwaysRun": false
+      }
+    },
+    "8": {
+      "id": 8,
+      "parent_id": 7,
+      "selected_api": "AirtableCLIAPI@3.15.0",
+      "action": "createRecord",
+      "params": {
+        "applicationId": "app_example",
+        "tableName": "Contacts",
+        "fields__Email": "{{2__output}}",
+        "fields__Name": "{{1__name}}"
+      }
+    }
+  }
+}

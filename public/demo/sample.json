@@ -1,0 +1,135 @@
+{
+  "zaps": [
+    {
+      "title": "Service requests · update an existing ticket or open a new one",
+      "provenance": "Original synthetic onboarding example in Zap export format. No customer workflow or credentials.",
+      "nodes": {
+        "1": {
+          "id": 1,
+          "parent_id": null,
+          "selected_api": "WebHookCLIAPI@1.0.29",
+          "action": "hook_v2",
+          "params": {
+            "key": ""
+          },
+          "meta": {
+            "stepTitle": "Receive a service request"
+          }
+        },
+        "2": {
+          "id": 2,
+          "parent_id": 1,
+          "selected_api": "ZapierFormatterCLIAPI@1.0.8",
+          "action": "text_line_item",
+          "params": {
+            "transform": "string.trim_space",
+            "inputs": "{{1__request_id}}"
+          },
+          "meta": {
+            "stepTitle": "Trim the request ID"
+          }
+        },
+        "3": {
+          "id": 3,
+          "parent_id": 2,
+          "selected_api": "AirtableCLIAPI@3.15.0",
+          "action": "findRecord",
+          "params": {
+            "applicationId": "app_example",
+            "tableName": "Requests",
+            "isExactMatch": "true",
+            "searchByField": "Request ID",
+            "searchByValue": "{{2__output}}",
+            "_zap_search_success_on_miss": "true",
+            "_zap_search_multiple_results": "first"
+          },
+          "meta": {
+            "stepTitle": "Find an existing ticket"
+          },
+          "authentication_id": "demo-operations-account"
+        },
+        "4": {
+          "id": 4,
+          "parent_id": 3,
+          "selected_api": "BranchingAPI",
+          "action": "branch",
+          "params": {},
+          "meta": {
+            "stepTitle": "Choose update or create"
+          }
+        },
+        "5": {
+          "id": 5,
+          "parent_id": 4,
+          "selected_api": "BranchingAPI",
+          "action": "filter",
+          "params": {
+            "emoji": "A",
+            "color": "green",
+            "path_eval_index": 0,
+            "filter_criteria": [
+              {
+                "group": 0,
+                "key": "{{3___zap_search_was_found_status}}",
+                "match": "boolean",
+                "value": "true",
+                "action": "continue"
+              }
+            ]
+          },
+          "meta": {
+            "stepTitle": "Ticket exists"
+          }
+        },
+        "6": {
+          "id": 6,
+          "parent_id": 5,
+          "selected_api": "AirtableCLIAPI@3.15.0",
+          "action": "updateRecord",
+          "params": {
+            "applicationId": "app_example",
+            "tableName": "Requests",
+            "rowId": "{{3__id}}",
+            "fields__Summary": "{{1__summary}}"
+          },
+          "meta": {
+            "stepTitle": "Update the ticket"
+          },
+          "authentication_id": "demo-operations-account"
+        },
+        "7": {
+          "id": 7,
+          "parent_id": 4,
+          "selected_api": "BranchingAPI",
+          "action": "filter",
+          "params": {
+            "emoji": "B",
+            "color": "blue",
+            "path_eval_index": 1,
+            "path_eval_stage": 1,
+            "isAlwaysRun": false
+          },
+          "meta": {
+            "stepTitle": "No ticket found"
+          }
+        },
+        "8": {
+          "id": 8,
+          "parent_id": 7,
+          "selected_api": "AirtableCLIAPI@3.15.0",
+          "action": "createRecord",
+          "params": {
+            "applicationId": "app_example",
+            "tableName": "Requests",
+            "fields__Request ID": "{{2__output}}",
+            "fields__Summary": "{{1__summary}}"
+          },
+          "meta": {
+            "stepTitle": "Open a new ticket"
+          },
+          "authentication_id": "demo-operations-account"
+        }
+      }
+    }
+  ]
+}

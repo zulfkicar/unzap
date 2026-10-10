@@ -1,0 +1,21 @@
+{
+  "name": "zap-to-code",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "build:demo": "node scripts/build-demo.mjs",
+    "start": "node src/server.js",
+    "test": "node --test test/*.test.js",
+    "demo": "node src/cli.js compile fixtures/webhook-filter-http.json --out .data/demo"
+  },
+  "description": "Self-hosted Zapier migration control room with native code generation, behavioral fixtures and durable workflow execution.",
+  "devDependencies": {
+    "@noble/hashes": "^2.4.0",
+    "buffer": "^6.0.3",
+    "esbuild": "^0.28.2"
+  }
+}
